@@ -1,3 +1,6 @@
+[![GoDoc](https://godoc.org/github.com/logavanc/largs?status.svg)](https://godoc.org/github.com/logavanc/largs)
+
+
 Package "largs" for Go
 ======================
 
