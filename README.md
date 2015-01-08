@@ -20,5 +20,6 @@ See [documentation on godoc.org](https://godoc.org/github.com/logavanc/largs).
 License
 -------
 
-GNU GENERAL PUBLIC LICENSE Version 3. See the [LICENSE](LICENSE) file for
-details.
+GNU GENERAL PUBLIC LICENSE Version 3.
+See the [LICENSE](LICENSE) file for details and
+[this site](https://www.gnu.org/licenses/rms-why-gplv3.html) for reasoning.
