@@ -1,19 +1,23 @@
-PACKAGE DOCUMENTATION
+Package "largs" for Go
+======================
 
-package largs
-    import "largs"
+[`largs`](https://github.com/logavanc/largs) aims to be a functional package
+to quickly setup and parse command line parameters using
+[Go](http://golang.org) (golang).
 
+It is currently being implemented, and not ready for use yet.
 
-TYPES
+Installing
+----------
 
-type Arg struct {
-    Long  string
-    Short string
-}
+    go get github.com/logavanc/largs
 
-type Largs struct {
-    Args []Arg
-    // contains filtered or unexported fields
-}
+Documentation
+-------------
 
+See [documentation on godoc.org](https://godoc.org/github.com/logavanc/largs).
 
+License
+-------
+
+GNU GENERAL PUBLIC LICENSE Version 3. See the `LICENSE` file for details.
