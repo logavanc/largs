@@ -1,2 +1,19 @@
-# largs
-Trying my hand at a command line argument parser in Go.
+PACKAGE DOCUMENTATION
+
+package largs
+    import "largs"
+
+
+TYPES
+
+type Arg struct {
+    Long  string
+    Short string
+}
+
+type Largs struct {
+    Args []Arg
+    // contains filtered or unexported fields
+}
+
+
