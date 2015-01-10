@@ -1,25 +1,33 @@
+// This package aims to provide a simple way to quickly setup and parse command
+// line parameters with go.
 package largs
 
 import (
 	"fmt"
-	"os"
+	_ "os"
 )
 
-type Largs struct {
-	stateLock *sync.Mutex
-
-	Args []Arg
+type largs struct {
+	defaultGroup *group
 }
 
-type Arg struct {
-	Long  string
-	Short string
+type group struct {
+	name string
 }
 
-// A system device must be created with a DeviceSeed.
-func New() (d *SystemDevice, err error) {
-	if err = validateSeed(seed); err != nil {
-		return
+func New() (l *largs, err error) {
+	l = new(largs)
+	l.defaultGroup = new(group)
+
+	return
+}
+
+// This function expects to be passed the full slice returned by os.Args
+func (l *largs) Parse(a []string) (err error) {
+	for i, v := range a {
+		if i != 0 {
+			fmt.Println(v)
+		}
 	}
 
 	return

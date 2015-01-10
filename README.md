@@ -4,8 +4,8 @@
 Package "largs" for Go
 ======================
 
-[`largs`](https://github.com/logavanc/largs) aims to be a functional package
-to quickly setup and parse command line parameters using
+[`largs`](https://github.com/logavanc/largs) aims to be a simple package
+to quickly setup and parse command line parameters with
 [Go](http://golang.org) (golang).
 
 It is currently being implemented, and not ready for use yet.
