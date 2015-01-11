@@ -14,8 +14,7 @@ func TestNew(t *testing.T) {
 }
 
 func TestParse(t *testing.T) {
-
-	if err = l.Parse([]string{"a", "b", "c"}); err != nil {
+	if err = l.parse([]string{"a", "b", "c"}); err != nil {
 		t.Fail()
 	}
 }

@@ -4,7 +4,7 @@ package largs
 
 import (
 	"fmt"
-	_ "os"
+	"os"
 )
 
 type largs struct {
@@ -22,8 +22,13 @@ func New() (l *largs, err error) {
 	return
 }
 
+func (l *largs) ParseArgs() (err error) {
+	err = l.parse(os.Args)
+	return
+}
+
 // This function expects to be passed the full slice returned by os.Args
-func (l *largs) Parse(a []string) (err error) {
+func (l *largs) parse(a []string) (err error) {
 	for i, v := range a {
 		if i != 0 {
 			fmt.Println(v)
