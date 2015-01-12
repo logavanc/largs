@@ -7,27 +7,15 @@ import (
 	"os"
 )
 
+//                                                                      PRIVATE
+///////////////////////////////////////////////////////////////////////////////
+
 type largs struct {
-	defaultGroup *group
+	group
 }
 
-type group struct {
-	name string
-}
-
-func New() (l *largs, err error) {
-	l = new(largs)
-	l.defaultGroup = new(group)
-
-	return
-}
-
-func (l *largs) ParseArgs() (err error) {
-	err = l.parse(os.Args)
-	return
-}
-
-// This function expects to be passed the full slice returned by os.Args
+// This function expects to be passed the full slice returned by os.Args, and
+// and is broken out here to allow testing.
 func (l *largs) parse(a []string) (err error) {
 	for i, v := range a {
 		if i != 0 {
@@ -35,5 +23,22 @@ func (l *largs) parse(a []string) (err error) {
 		}
 	}
 
+	return
+}
+
+//                                                                       PUBLIC
+///////////////////////////////////////////////////////////////////////////////
+
+func New() (l *largs, err error) {
+	l = new(largs)
+	return
+}
+
+// This function attempts to parse the command line arguments according to the
+// constructed largs struct.  If err is returned, it will be a string
+// containing the reason the parameters weren't correct, followed by the help
+// text.
+func (l *largs) ParseArgs() (err error) {
+	err = l.parse(os.Args)
 	return
 }
