@@ -29,15 +29,17 @@ func (l *largs) parse(a []string) (err error) {
 //                                                                       PUBLIC
 ///////////////////////////////////////////////////////////////////////////////
 
+// Create a new largs instance to customize with groups, flags,
+// named/positional arguments etc.
 func New() (l *largs, err error) {
 	l = new(largs)
 	return
 }
 
 // This function attempts to parse the command line arguments according to the
-// constructed largs struct.  If err is returned, it will be a string
+// constructed largs instance.  If err is returned, it will be a string
 // containing the reason the parameters weren't correct, followed by the help
-// text.
+// text (so just print it).
 func (l *largs) ParseArgs() (err error) {
 	err = l.parse(os.Args)
 	return
