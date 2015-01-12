@@ -1,4 +1,5 @@
 [![GoDoc](https://godoc.org/github.com/logavanc/largs?status.svg)](https://godoc.org/github.com/logavanc/largs)
+[![Build Status](https://travis-ci.org/logavanc/largs.svg?branch=master)](https://travis-ci.org/logavanc/largs)
 
 
 Package "largs" for Go
