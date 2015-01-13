@@ -13,7 +13,7 @@ import (
 // Create a new largs instance to customize with groups, flags,
 // named/positional arguments etc.
 func New() (l *largs, err error) {
-	l = new(largs)
+	l = &largs{}
 	return
 }
 

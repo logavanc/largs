@@ -30,6 +30,6 @@ type flag struct {
 }
 
 func newFlag() (f *flag, err error) {
-	f = new(flag)
+	f = &flag{}
 	return
 }

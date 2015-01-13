@@ -35,6 +35,6 @@ type group struct {
 }
 
 func newGroup() (g *group) {
-	g = new(group)
+	g = &group{}
 	return
 }
