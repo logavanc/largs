@@ -5,21 +5,6 @@ import (
 	_ "os"
 )
 
-//                                                                      PRIVATE
-///////////////////////////////////////////////////////////////////////////////
-
-type group struct {
-	name   string
-	groups []*group
-	//flags  []*flag
-
-}
-
-func newGroup() (g *group) {
-	g = new(group)
-	return
-}
-
 //                                                                       PUBLIC
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -37,4 +22,19 @@ func (g *group) AddGroup() (gr *group) {
 
 func (g *group) AddFlag() {
 
+}
+
+//                                                                      PRIVATE
+///////////////////////////////////////////////////////////////////////////////
+
+type group struct {
+	name   string
+	groups []*group
+	//flags  []*flag
+
+}
+
+func newGroup() (g *group) {
+	g = new(group)
+	return
 }

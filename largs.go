@@ -7,25 +7,6 @@ import (
 	"os"
 )
 
-//                                                                      PRIVATE
-///////////////////////////////////////////////////////////////////////////////
-
-type largs struct {
-	group
-}
-
-// This function expects to be passed the full slice returned by os.Args, and
-// and is broken out here to allow testing.
-func (l *largs) parse(a []string) (err error) {
-	for i, v := range a {
-		if i != 0 {
-			fmt.Println(v)
-		}
-	}
-
-	return
-}
-
 //                                                                       PUBLIC
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -42,5 +23,24 @@ func New() (l *largs, err error) {
 // text (so just print it).
 func (l *largs) ParseArgs() (err error) {
 	err = l.parse(os.Args)
+	return
+}
+
+//                                                                      PRIVATE
+///////////////////////////////////////////////////////////////////////////////
+
+type largs struct {
+	group
+}
+
+// This function expects to be passed the full slice returned by os.Args, and
+// and is broken out here to allow testing.
+func (l *largs) parse(a []string) (err error) {
+	for i, v := range a {
+		if i != 0 {
+			fmt.Println(v)
+		}
+	}
+
 	return
 }
