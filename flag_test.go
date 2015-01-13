@@ -5,7 +5,7 @@ import (
 )
 
 var flagsErr error
-var f *flag
+var f *Flag
 
 func TestNewFlag(t *testing.T) {
 	if f, flagsErr = newFlag(); flagsErr != nil {

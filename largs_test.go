@@ -5,7 +5,7 @@ import (
 )
 
 var largsErr error
-var l *largs
+var l *Largs
 
 func TestNew(t *testing.T) {
 	if l, largsErr = New(); largsErr != nil {

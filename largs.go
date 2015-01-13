@@ -10,10 +10,14 @@ import (
 //                                                                       PUBLIC
 ///////////////////////////////////////////////////////////////////////////////
 
+type Largs struct {
+	Group
+}
+
 // Create a new largs instance to customize with groups, flags,
 // named/positional arguments etc.
-func New() (l *largs, err error) {
-	l = &largs{}
+func New() (l *Largs, err error) {
+	l = &Largs{}
 	return
 }
 
@@ -21,7 +25,7 @@ func New() (l *largs, err error) {
 // constructed largs instance.  If err is returned, it will be a string
 // containing the reason the parameters weren't correct, followed by the help
 // text (so just print it).
-func (l *largs) ParseArgs() (err error) {
+func (l *Largs) ParseArgs() (err error) {
 	err = l.parse(os.Args)
 	return
 }
@@ -29,13 +33,9 @@ func (l *largs) ParseArgs() (err error) {
 //                                                                      PRIVATE
 ///////////////////////////////////////////////////////////////////////////////
 
-type largs struct {
-	group
-}
-
 // This function expects to be passed the full slice returned by os.Args, and
 // and is broken out here to allow testing.
-func (l *largs) parse(a []string) (err error) {
+func (l *Largs) parse(a []string) (err error) {
 	for i, v := range a {
 		if i != 0 {
 			fmt.Println(v)

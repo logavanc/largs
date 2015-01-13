@@ -8,33 +8,32 @@ import (
 //                                                                       PUBLIC
 ///////////////////////////////////////////////////////////////////////////////
 
-func (g *group) SetName(n string) (err error) {
+type Group struct {
+	name   string
+	groups []*Group
+	//flags  []*flag
+
+}
+
+func (g *Group) SetName(n string) (err error) {
 	g.name = n
 	return
 }
 
-func (g *group) AddGroup() (gr *group) {
+func (g *Group) AddGroup() (gr *Group) {
 	gr = newGroup()
 	g.groups = append(g.groups, gr)
 
 	return
 }
 
-func (g *group) AddFlag() {
-
+func (g *Group) AddFlag() {
 }
 
 //                                                                      PRIVATE
 ///////////////////////////////////////////////////////////////////////////////
 
-type group struct {
-	name   string
-	groups []*group
-	//flags  []*flag
-
-}
-
-func newGroup() (g *group) {
-	g = &group{}
+func newGroup() (g *Group) {
+	g = &Group{}
 	return
 }

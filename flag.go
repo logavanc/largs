@@ -8,14 +8,20 @@ import (
 //                                                                       PUBLIC
 ///////////////////////////////////////////////////////////////////////////////
 
+type Flag struct {
+	short rune
+	long  string
+	count bool
+}
+
 // Set the short flag name (-v).
-func (f *flag) SetShort(s rune) (err error) {
+func (f *Flag) SetShort(s rune) (err error) {
 	f.short = s
 	return
 }
 
 // Set the long flag name (--verbose)
-func (f *flag) SetLong(s string) (err error) {
+func (f *Flag) SetLong(s string) (err error) {
 	f.long = s
 	return
 }
@@ -23,13 +29,7 @@ func (f *flag) SetLong(s string) (err error) {
 //                                                                      PRIVATE
 ///////////////////////////////////////////////////////////////////////////////
 
-type flag struct {
-	short rune
-	long  string
-	count bool
-}
-
-func newFlag() (f *flag, err error) {
-	f = &flag{}
+func newFlag() (f *Flag, err error) {
+	f = &Flag{}
 	return
 }
