@@ -12,6 +12,7 @@ import (
 
 type Largs struct {
 	Group
+	flags []*Flag
 }
 
 // Create a new largs instance to customize with groups, flags,
@@ -28,6 +29,10 @@ func New() (l *Largs, err error) {
 func (l *Largs) ParseArgs() (err error) {
 	err = l.parse(os.Args)
 	return
+}
+
+func (l *Largs) AddFlag(f *Flag) {
+	l.flags = append(l.flags, f)
 }
 
 //                                                                      PRIVATE
