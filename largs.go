@@ -12,7 +12,8 @@ import (
 
 type Largs struct {
 	Group
-	flags []*Flag
+	groups []*Group
+	flags  []*Flag
 }
 
 // Create a new largs instance to customize with groups, flags,
@@ -31,8 +32,17 @@ func (l *Largs) ParseArgs() (err error) {
 	return
 }
 
-func (l *Largs) AddFlag(f *Flag) {
-	l.flags = append(l.flags, f)
+func (l *Largs) Add(a interface{}) (err error) {
+	switch v := a.(type) {
+	case *Flag:
+		fmt.Println(v)
+	case *Group:
+		fmt.Println(v)
+	default:
+		err = fmt.Errorf("Invalid argument type '%s'.", v)
+	}
+	//l.flags = append(l.flags, f)
+	return
 }
 
 //                                                                      PRIVATE

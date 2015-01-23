@@ -1,18 +1,22 @@
 package largs
 
 import (
-	_ "fmt"
+	"fmt"
 	_ "os"
 )
 
-//                                                                       PUBLIC
-///////////////////////////////////////////////////////////////////////////////
+type flagOption func(*Flag) error
 
 type Flag struct {
-	short     rune
-	long      string
-	countable bool
+	short       rune
+	long        string
+	description string
+	required    bool
+	countable   bool
 }
+
+//                                                                     GETTERS
+///////////////////////////////////////////////////////////////////////////////
 
 // Get the short flag name (-v).
 func (f *Flag) Short() (s rune) {
@@ -29,49 +33,63 @@ func (f *Flag) Countable() (c bool) {
 	return f.countable
 }
 
-//                                                                      PRIVATE
+// Get the flag's required setting.
+func (f *Flag) Required() (c bool) {
+	return f.required
+}
+
+//                                                                        INIT
 ///////////////////////////////////////////////////////////////////////////////
 
-// Create a new (countable) short flag object and return a pointer to it.
-func CountableFlag(short rune) (f *Flag, err error) {
-	f = &Flag{
-		short:     short,
-		long:      "",
-		countable: true,
+func NewFlag(options ...flagOption) (f *Flag, err error) {
+	f = &Flag{}
+
+	for _, option := range options {
+		err := option(f)
+		if err != nil {
+			return nil, err
+		}
+	}
+
+	// Either short or long parameter must be defined.
+	if f.short == 0 && f.long == "" {
+		return nil, fmt.Errorf(
+			"NewFlag() must receive at least a Short() or Long() parameter.")
 	}
 
 	return
 }
 
-// Create a new short flag object and return a pointer to it.
-func ShortFlag(short rune) (f *Flag, err error) {
-	f = &Flag{
-		short:     short,
-		long:      "",
-		countable: false,
-	}
+//                                                                     OPTIONS
+///////////////////////////////////////////////////////////////////////////////
 
+func Short(s rune) func(*Flag) error {
+	return func(f *Flag) (err error) {
+		f.short = s
+		return
+	}
+}
+
+func Long(l string) func(*Flag) error {
+	return func(f *Flag) (err error) {
+		f.long = l
+		return
+	}
+}
+
+func Description(d string) func(*Flag) error {
+	return func(f *Flag) (err error) {
+		f.description = d
+		return
+	}
+}
+
+func Countable(f *Flag) (err error) {
+	f.countable = true
 	return
 }
 
-// Create a new long flag object and return a pointer to it.
-func LongFlag(long string) (f *Flag, err error) {
-	f = &Flag{
-		short:     0,
-		long:      long,
-		countable: false,
-	}
-
-	return
-}
-
-// Create a new short flag object and return a pointer to it.
-func Normalflag(short rune, long string) (f *Flag, err error) {
-	f = &Flag{
-		short:     short,
-		long:      long,
-		countable: false,
-	}
-
+func Required(f *Flag) (err error) {
+	f.required = true
 	return
 }
